@@ -1,0 +1,168 @@
+<html>
+	<head>
+		<title>Calculadora Simples</title>
+		<style type="text/css">
+			.botao {
+				width: 50px;
+			}
+
+			.visor {
+				width: 100%;
+			}
+		</style>
+		<script type="text/javascript">
+			var number1 = "";
+			var number2 = "";
+			var operation1 = "";
+			var isNewNumber = true;
+
+			function eraseValue() {
+				var visor = document.getElementById("inp_text_visor").value;
+
+				if (visor.length > 1) {
+					visor = visor.substring(0, visor.length - 1);
+				} else {
+					visor = "0"
+				}
+
+				document.getElementById("inp_text_visor").value = visor;
+			}
+
+			function number(num) {
+				var visor = document.getElementById("inp_text_visor").value;
+				if (visor == "0" || isNewNumber) {
+					document.getElementById("inp_text_visor").value = num;
+					isNewNumber = false;
+				}
+				else
+					document.getElementById("inp_text_visor").value += num;
+			}
+
+			function operation(oper) {
+				if (number1 == "") {
+					number1 = document.getElementById("inp_text_visor").value;
+					operation1 = oper;
+					isNewNumber = true;
+				} else {
+					if (isNewNumber) {
+						operation1 = oper;
+					} else {
+						calculate();
+						number1 = document.getElementById("inp_text_visor").value;
+						operation1 = oper;
+					}
+				}
+			}
+
+			function comma() {
+				var visor = document.getElementById("inp_text_visor").value;
+				if (visor.indexOf(",") == -1)
+					document.getElementById("inp_text_visor").value += ",";
+			}
+
+			function calculate() {
+				if (number1 == "") {
+					return;
+				}
+
+				number2 = document.getElementById("inp_text_visor").value;
+
+				// Fix Locale
+				number1 = number1.replace(",", ".");
+				number2 = number2.replace(",", ".");
+
+				var result;
+				switch (operation1) {
+					case '/':
+						result = parseFloat(number1) / parseFloat(number2);
+						break;
+					case 'x':
+						result = parseFloat(number1) * parseFloat(number2);
+						break;
+					case '-':
+						result = parseFloat(number1) - parseFloat(number2);
+						break;
+					case '+':
+						result = parseFloat(number1) + parseFloat(number2);
+						break;
+				}
+
+				// Fix Locale
+				result = result.toString().replace(".", ",");
+
+				document.getElementById("inp_text_visor").value = result;
+
+				number1 = "";
+				number2 = "";
+				operation1 = "";
+				isNewNumber = true;
+			}
+
+			function clearZero() {
+				var visor = document.getElementById("inp_text_visor").value;
+
+				if (visor == "0") {
+					document.getElementById("inp_text_visor").value = ""
+				}
+			}
+
+			function restoreZero() {
+				var visor = document.getElementById("inp_text_visor").value;
+
+				if (visor == "") {
+					document.getElementById("inp_text_visor").value = "0";
+				}
+			}
+
+			function validateInput() {
+				// Only Numbers (ASCII Table)
+				if ((event.keyCode < 44 || event.keyCode > 45) && (event.keyCode < 48 || event.keyCode > 57))	 {
+					event.returnValue = false;
+				} else {
+					if (event.keyCode == 44) {
+						comma();
+						event.returnValue = false;
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Calculadora Simples</h1>
+		<table border="2">
+			<tr>
+				<td colspan="4"><input type="text" id="inp_text_visor" value="0" maxlength="10" class="visor" 
+					onclick="clearZero()" onfocusout="restoreZero()" onkeypress="validateInput()" /></td>
+			</tr>
+			<tr>
+				<td colspan="3" />
+				<td><input type="button" id="inp_button_erase"				value="←" onclick="eraseValue()" class="botao"></td>
+			</tr>
+			<tr>
+				<td><input type="button" id="inp_button_number_7"			value="7" onclick="number(7)" class="botao"></td>
+				<td><input type="button" id="inp_button_number_8"			value="8" onclick="number(8)" class="botao"></td>
+				<td><input type="button" id="inp_button_number_9"			value="9" onclick="number(9)" class="botao"></td>
+				<td><input type="button" id="inp_button_div" 				value="/" onclick="operation('/')" class="botao"></td>
+			</tr>
+			<tr>
+				<td><input type="button" id="inp_button_number_4"			value="4" onclick="number(4)" class="botao"></td>
+				<td><input type="button" id="inp_button_number_5"			value="5" onclick="number(5)" class="botao"></td>
+				<td><input type="button" id="inp_button_number_6"			value="6" onclick="number(6)" class="botao"></td>
+				<td><input type="button" id="inp_button_mul"				value="x" onclick="operation('x')" class="botao"></td>
+			</tr>
+			<tr>
+				<td><input type="button" id="inp_button_number_1"			value="1" onclick="number(1)" class="botao"></td>
+				<td><input type="button" id="inp_button_number_2"			value="2" onclick="number(2)" class="botao"></td>
+				<td><input type="button" id="inp_button_number_3"			value="3" onclick="number(3)" class="botao"></td>
+				<td><input type="button" id="inp_button_minus"				value="-" onclick="operation('-')" class="botao"></td>
+			</tr>
+			<tr>
+				<td><input type="button" id="inp_button_number_0"			value="0" onclick="number(0)" class="botao"></td>
+				<td><input type="button" id="inp_button_number_comma"		value="," onclick="comma()" class="botao"></td>
+				<td><input type="button" id="inp_button_number_equals"		value="=" onclick="calculate()" class="botao"></td>
+				<td><input type="button" id="inp_button_sum"				value="+" onclick="operation('+')" class="botao"></td>
+			</tr>
+		</table>
+		<h6>Developed by Edyr Costa. 2019.</h6>
+	</body>
+</html>
