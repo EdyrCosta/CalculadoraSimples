@@ -30,6 +30,10 @@
 
 			function number(num) {
 				var visor = document.getElementById("inp_text_visor").value;
+				if (visor.length >= 10) {
+					return;
+				}
+
 				if (visor == "0" || isNewNumber) {
 					document.getElementById("inp_text_visor").value = num;
 					isNewNumber = false;
