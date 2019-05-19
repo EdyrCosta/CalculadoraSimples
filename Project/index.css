@@ -1,0 +1,16 @@
+.btn {
+	width: 50px;
+}
+
+.my-display {
+	width: 208px;
+}
+
+.my-icon {
+	width: 24px;
+	height: 24px;
+}
+
+.my-icon svg path {
+  fill: #fff !import;
+}

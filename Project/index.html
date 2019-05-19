@@ -1,53 +1,121 @@
-<html>
+<!DOCTYPE html>
+<html class="h-100">
 	<head>
 		<title>Calculadora Simples</title>
-		<style type="text/css">
-			.botao {
-				width: 50px;
-			}
 
-			.visor {
-				width: 100%;
-			}
-		</style>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="Content-Language" content="pt-br">
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="index.css">
 		<script src="index.js"></script>
 	</head>
-	<body>
-		<h1>Calculadora Simples</h1>
-		<table border="2">
-			<tr>
-				<td colspan="4"><input type="text" id="inp_text_visor" value="0" maxlength="10" class="visor" 
-					onclick="clearZero()" onfocusout="restoreZero()" onkeypress="validateInput()" /></td>
-			</tr>
-			<tr>
-				<td colspan="3" />
-				<td><input type="button" id="inp_button_erase"				value="←" onclick="eraseValue()" class="botao"></td>
-			</tr>
-			<tr>
-				<td><input type="button" id="inp_button_number_7"			value="7" onclick="number(7)" class="botao"></td>
-				<td><input type="button" id="inp_button_number_8"			value="8" onclick="number(8)" class="botao"></td>
-				<td><input type="button" id="inp_button_number_9"			value="9" onclick="number(9)" class="botao"></td>
-				<td><input type="button" id="inp_button_div" 				value="/" onclick="operation('/')" class="botao"></td>
-			</tr>
-			<tr>
-				<td><input type="button" id="inp_button_number_4"			value="4" onclick="number(4)" class="botao"></td>
-				<td><input type="button" id="inp_button_number_5"			value="5" onclick="number(5)" class="botao"></td>
-				<td><input type="button" id="inp_button_number_6"			value="6" onclick="number(6)" class="botao"></td>
-				<td><input type="button" id="inp_button_mul"				value="x" onclick="operation('x')" class="botao"></td>
-			</tr>
-			<tr>
-				<td><input type="button" id="inp_button_number_1"			value="1" onclick="number(1)" class="botao"></td>
-				<td><input type="button" id="inp_button_number_2"			value="2" onclick="number(2)" class="botao"></td>
-				<td><input type="button" id="inp_button_number_3"			value="3" onclick="number(3)" class="botao"></td>
-				<td><input type="button" id="inp_button_minus"				value="-" onclick="operation('-')" class="botao"></td>
-			</tr>
-			<tr>
-				<td><input type="button" id="inp_button_number_0"			value="0" onclick="number(0)" class="botao"></td>
-				<td><input type="button" id="inp_button_number_comma"		value="," onclick="comma()" class="botao"></td>
-				<td><input type="button" id="inp_button_number_equals"		value="=" onclick="calculate()" class="botao"></td>
-				<td><input type="button" id="inp_button_sum"				value="+" onclick="operation('+')" class="botao"></td>
-			</tr>
-		</table>
-		<h6>Developed by Edyr Costa. 2019.</h6>
+	<body class="d-flex flex-column h-100">
+		<main role="main" class="">
+			<div class="container-fluid bg-primary my-header p-2">
+				<div class="container">
+					<h1 class="display-6">Calculadora Simples</h1>
+				</div>
+				<div class="container">
+					<p class="lead">Calculadora com as operações básicas.</p>
+				</div>
+			</div>
+			<div class="container-fluid py-2
+						d-none d-sm-none d-md-block d-lg-block d-xl-block">
+				<div class="d-table mx-auto">
+					<img width="728" height="90">
+				</div>
+			</div>
+			<div class="container-fluid m-0 p-0">
+				<div class="row m-0 p-0">
+					<!-- ads left -->
+					<div class="col-12 col-sm-12 col-lg-4 col-xl-4
+								d-block d-sm-block d-md-none d-lg-block d-xl-block
+								p-2">
+						<div class="d-table mx-auto float-none float-sm-none float-md-none float-lg-left float-xl-left">
+							<img width="300" height="250">
+						</div>
+					</div>
+					<!-- calc -->
+					<div class="col-12 col-sm-12 col-md-7 col-lg-4 col-xl-4 p-2">
+						<div>
+							<table class="mx-auto">
+							<tr>
+								<td colspan="4">
+									<div class="input-group mb-3 my-display">
+										<input type="text" id="inp_text_visor" value="0" maxlength="10" class="form-control" 
+										onclick="clearZero()" onfocusout="restoreZero()" onkeypress="validateInput()" />
+										<div class="input-group-append">
+										    <button class="btn btn-outline-secondary" type="button" onclick="eraseValue()">←</button>
+			  							</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(7)">7</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(8)">8</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(9)">9</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="operation('/')">÷</button></td>
+							</tr>
+							<tr>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(4)">4</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(5)">5</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(6)">6</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="operation('x')">×</button></td>
+							</tr>
+							<tr>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(1)">1</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(2)">2</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(3)">3</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="operation('-')">−</button></td>
+							</tr>
+							<tr>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="number(0)">0</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="comma()">,</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="calculate()">=</button></td>
+								<td><button type="button" class="btn btn-lg btn-outline-dark" onclick="operation('+')">+</button></td>
+							</tr>
+							</table>
+						</div>
+					</div>
+					<!-- ads right -->
+					<div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 p-2">
+						<div class="d-table mx-auto float-none float-sm-none float-md-right float-lg-right float-xl-right">
+							<img width="300" height="250">
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer class="bg-dark mt-auto">
+			<div class="container-fluid">
+				<div class="d-table mx-auto p-3">
+				<div class="d-inline-block mx-4 my-2">
+					<img src="img\github.svg" class="my-icon"/>
+					<a class="text-light" href="#">GitHub</a>
+				</div>
+				<div class="d-inline-block mx-4 my-2">
+					<img src="img\facebook.svg" class="my-icon" />
+					<a class="text-light" href="#">Facebook</a>
+				</div>
+				<div class="d-inline-block mx-4 my-2">
+					<img src="img\twitter.svg" class="my-icon" />
+					<a class="text-light"class="text-light" href="#">Twitter</a>
+				</div>
+				<div class="d-inline-block mx-4 my-2">
+					<img src="img\instagram.svg" class="my-icon" />
+					<a class="text-light" href="#">Instagram</a>
+				</div>
+			</div>
+			<div class="container-fluid pb-1">
+				<p class="text-center text-light m-0">Developed by Edyr Costa. 2019.</p>
+			</div>
+		</div>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</body>
 </html>
